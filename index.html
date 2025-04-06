@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form with Inline CSS</title>
+</head>
+<body style="font-family: 'Arial', sans-serif; background-color: #f0f4f8; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;">
+
+    <!-- Main Form Container -->
+    <div style="width: 100%; max-width: 600px; background-color: white; padding: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        
+        <!-- Header -->
+        <header style="text-align: center; background-color: #4CAF50; color: white; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+            <h1>Contact Us</h1>
+        </header>
+
+        <!-- Form -->
+        <form id="contactForm">
+            <!-- Name Input -->
+            <div style="margin-bottom: 15px;">
+                <label for="name" style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 1rem; color: #333;">Name</label>
+                <input type="text" id="name" name="name" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 1rem; transition: border-color 0.3s ease;" placeholder="Your Name" required>
+                <span class="error-message" id="nameError" style="color: red; font-size: 0.875rem; margin-top: 5px; display: none;">Name is required</span>
+            </div>
+
+            <!-- Email Input -->
+            <div style="margin-bottom: 15px;">
+                <label for="email" style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 1rem; color: #333;">Email</label>
+                <input type="email" id="email" name="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 1rem; transition: border-color 0.3s ease;" placeholder="Your Email" required>
+                <span class="error-message" id="emailError" style="color: red; font-size: 0.875rem; margin-top: 5px; display: none;">Email is required</span>
+            </div>
+
+            <!-- Message Input -->
+            <div style="margin-bottom: 15px;">
+                <label for="message" style="display: block; font-weight: bold; margin-bottom: 5px; font-size: 1rem; color: #333;">Message</label>
+                <textarea id="message" name="message" rows="4" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; font-size: 1rem; transition: border-color 0.3s ease;" placeholder="Your Message" required></textarea>
+                <span class="error-message" id="messageError" style="color: red; font-size: 0.875rem; margin-top: 5px; display: none;">Message is required</span>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="text-align: center;">
+                <button type="submit" style="padding: 12px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s ease; width: 100%; max-width: 200px;">Submit</button>
+            </div>
+        </form>
+
+        <!-- Confirmation Message -->
+        <div id="confirmation" style="text-align: center; background-color: #e6f7e6; color: #4CAF50; padding: 20px; border-radius: 8px; margin-top: 20px; display: none;">
+            <p>Your message has been successfully sent. Thank you!</p>
+        </div>
+
+    </div>
+
+    <footer style="text-align: center; margin-top: 30px; font-size: 0.9rem; color: #666;">
+        <p>For more information, visit our <a href="#" style="color: #4CAF50; text-decoration: none;">website</a>.</p>
+    </footer>
+
+    <script>
+        // Form validation and handling the submission
+        document.querySelector("#contactForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            let isValid = true;
+
+            // Clear previous error messages
+            document.querySelectorAll(".error-message").forEach(function(errorMessage) {
+                errorMessage.style.display = "none";
+            });
+
+            // Validate Name
+            const name = document.getElementById("name").value;
+            if (!name) {
+                document.getElementById("nameError").style.display = "block";
+                isValid = false;
+            }
+
+            // Validate Email
+            const email = document.getElementById("email").value;
+            if (!email) {
+                document.getElementById("emailError").style.display = "block";
+                isValid = false;
+            }
+
+            // Validate Message
+            const message = document.getElementById("message").value;
+            if (!message) {
+                document.getElementById("messageError").style.display = "block";
+                isValid = false;
+            }
+
+            // If all validations pass, show confirmation
+            if (isValid) {
+                document.querySelector("#contactForm").reset();
+                document.getElementById("confirmation").style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
